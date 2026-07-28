@@ -1,0 +1,779 @@
+<title>首爾五日｜8/12–16 行程＋交通</title>
+<style>
+  :root{
+    --paper:#F2F2F0; --surface:#FAFAF8; --ink:#161616; --mid:#7C7C78;
+    --line:#D9D9D5; --line-dark:#161616; --fill:#EAEAE6;
+    --serif:"Iowan Old Style",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#171717; --surface:#1E1E1D; --ink:#E9E9E6; --mid:#9A9A95;
+      --line:#3A3A37; --line-dark:#E9E9E6; --fill:#262624;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#171717; --surface:#1E1E1D; --ink:#E9E9E6; --mid:#9A9A95;
+    --line:#3A3A37; --line-dark:#E9E9E6; --fill:#262624;
+  }
+  :root[data-theme="light"]{
+    --paper:#F2F2F0; --surface:#FAFAF8; --ink:#161616; --mid:#7C7C78;
+    --line:#D9D9D5; --line-dark:#161616; --fill:#EAEAE6;
+  }
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  body{
+    background:var(--paper); color:var(--ink); font-family:var(--sans);
+    line-height:1.75; margin:0; padding:0 20px 80px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:680px; margin:0 auto}
+  b{font-weight:600}
+  a{color:var(--ink)}
+  a:focus-visible{outline:1.5px solid var(--ink); outline-offset:2px}
+
+  /* ---------- header ---------- */
+  header{padding:56px 0 0}
+  .kicker{
+    font-family:var(--serif); font-size:12px; letter-spacing:.32em;
+    text-transform:uppercase; color:var(--mid); margin:0 0 18px;
+  }
+  .masthead{border-top:2.5px solid var(--line-dark); border-bottom:1px solid var(--line); padding:26px 0 22px}
+  h1{
+    font-size:30px; font-weight:600; line-height:1.35; margin:0 0 4px;
+    letter-spacing:.06em; text-wrap:balance;
+  }
+  h1 .en{
+    display:block; font-family:var(--serif); font-size:13px; font-weight:400;
+    letter-spacing:.22em; text-transform:uppercase; color:var(--mid); margin-top:8px;
+  }
+  .lede{color:var(--mid); font-size:14px; margin:14px 0 0}
+  .facts{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    border-bottom:1px solid var(--line); font-size:13.5px;
+  }
+  .facts div{padding:12px 14px 12px 0; border-top:1px solid var(--line)}
+  .facts .k{
+    font-family:var(--serif); font-size:11px; letter-spacing:.24em;
+    text-transform:uppercase; color:var(--mid); display:block; margin-bottom:2px;
+  }
+  .facts b{font-variant-numeric:tabular-nums}
+
+  .alert{
+    border:1.5px solid var(--line-dark); padding:16px 18px; margin:26px 0 0;
+    font-size:14px; background:var(--surface);
+  }
+  .alert .h{
+    font-family:var(--serif); font-size:11px; letter-spacing:.26em;
+    text-transform:uppercase; display:block; margin-bottom:6px;
+  }
+
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky; top:0; z-index:9; background:var(--paper);
+    padding:12px 0; margin:20px 0 0; border-bottom:1px solid var(--line);
+    display:flex; gap:0; overflow-x:auto; -webkit-overflow-scrolling:touch;
+  }
+  nav a{
+    flex:none; text-decoration:none; color:var(--mid);
+    padding:4px 13px; font-size:13px; border-right:1px solid var(--line);
+    font-variant-numeric:tabular-nums; white-space:nowrap;
+  }
+  nav a:first-child{padding-left:0}
+  nav a:last-child{border-right:none}
+  nav a:hover, nav a:focus-visible{color:var(--ink); outline:none}
+  nav a .d{font-family:var(--serif); font-weight:700; color:var(--ink); margin-right:5px}
+
+  /* ---------- section scaffold ---------- */
+  section{margin:60px 0 0}
+  .sec{display:grid; grid-template-columns:34px 1fr; gap:16px}
+  .vlabel{
+    writing-mode:vertical-rl; font-size:11px; letter-spacing:.42em;
+    color:var(--mid); border-left:1px solid var(--line); padding:2px 0 0 10px;
+    height:max-content; min-height:96px; user-select:none;
+  }
+  .sec-body{min-width:0}
+  .sec-head{border-bottom:2px solid var(--line-dark); padding-bottom:10px; margin-bottom:0;
+    display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap}
+  h2{font-size:19px; font-weight:600; letter-spacing:.05em; margin:0; text-wrap:balance}
+  .sec-head .en{
+    font-family:var(--serif); font-size:11px; letter-spacing:.26em;
+    text-transform:uppercase; color:var(--mid);
+  }
+  .prose{font-size:14.5px; margin:14px 0 0}
+  .fine{font-size:12.5px; color:var(--mid)}
+
+  /* ---------- steps ---------- */
+  .steps{list-style:none; counter-reset:s; margin:16px 0 0; padding:0}
+  .steps li{
+    counter-increment:s; position:relative; padding:10px 0 10px 44px;
+    font-size:14.5px; border-bottom:1px solid var(--line);
+  }
+  .steps li:last-child{border-bottom:none}
+  .steps li::before{
+    content:counter(s,decimal-leading-zero); position:absolute; left:0; top:12px;
+    font-family:var(--serif); font-size:15px; font-weight:700;
+    font-variant-numeric:tabular-nums; letter-spacing:.06em;
+  }
+
+  /* ---------- day ---------- */
+  .day-head{
+    display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;
+    border-bottom:2px solid var(--line-dark); padding-bottom:8px;
+  }
+  .day-head .num{
+    font-family:var(--serif); font-size:44px; font-weight:700; line-height:1;
+    font-variant-numeric:tabular-nums; letter-spacing:.02em;
+  }
+  .day-head .wd{font-size:13px; color:var(--mid)}
+  .day-head .wd .hol{
+    background:var(--ink); color:var(--paper); padding:1px 7px; margin-left:6px;
+    font-size:11.5px; letter-spacing:.1em;
+  }
+  .day-head .theme{font-size:14.5px; letter-spacing:.04em}
+  .day-head .fare{
+    margin-left:auto; font-family:var(--serif); font-size:13px;
+    font-variant-numeric:tabular-nums; color:var(--mid);
+  }
+
+  /* timeline */
+  .tl{list-style:none; margin:6px 0 0; padding:0}
+  .tl li{position:relative; padding:10px 0 10px 74px; border-bottom:1px solid var(--line)}
+  .tl li:last-child{border-bottom:none}
+  .tl .t{
+    position:absolute; left:0; top:13px; width:52px; text-align:left;
+    font-family:var(--serif); font-size:13px; color:var(--mid);
+    font-variant-numeric:tabular-nums; letter-spacing:.04em;
+  }
+  .tl .what{font-size:15px}
+  .tl .note{font-size:13px; color:var(--mid); margin-top:1px}
+  .transit{
+    display:inline-flex; flex-wrap:wrap; align-items:center; gap:8px;
+    font-size:13px; color:var(--mid); font-variant-numeric:tabular-nums; margin-top:3px;
+  }
+  .mode{
+    flex:none; border:1px solid var(--ink); color:var(--ink);
+    font-size:11px; letter-spacing:.14em; padding:0 6px; line-height:1.7;
+  }
+  .tag{
+    display:inline-block; font-size:11px; letter-spacing:.1em;
+    border:1px solid var(--line-dark); padding:0 6px; margin-left:8px;
+    position:relative; top:-1.5px; line-height:1.7;
+  }
+  .tag.fill{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+
+  /* ---------- menu ---------- */
+  .menu-block{border-bottom:1px solid var(--line); padding:20px 0 22px}
+  .menu-block:last-child{border-bottom:none}
+  .menu-block .rname{font-size:16px; font-weight:600; letter-spacing:.04em; margin:0}
+  .menu-block .rmeta{font-size:12.5px; color:var(--mid); margin:2px 0 12px}
+  .mi{list-style:none; margin:0; padding:0}
+  .mi li{
+    display:flex; align-items:baseline; gap:10px; font-size:14px; padding:5px 0;
+  }
+  .mi .kr{flex:none; max-width:46%}
+  .mi .zh{color:var(--mid); font-size:13px}
+  .mi .dots{flex:1; border-bottom:1px dotted var(--line); transform:translateY(-4px); min-width:24px}
+  .mi .p{
+    flex:none; font-family:var(--serif); font-size:14px;
+    font-variant-numeric:tabular-nums;
+  }
+  .mi li.star .kr::after{content:" ●"; font-size:9px; vertical-align:2px}
+  .order-tip{
+    background:var(--fill); padding:10px 14px; font-size:13px; margin-top:12px;
+  }
+  .order-tip .h{
+    font-family:var(--serif); font-size:10.5px; letter-spacing:.24em;
+    text-transform:uppercase; color:var(--mid); display:block;
+  }
+
+  /* ---------- tables ---------- */
+  .tbl-wrap{overflow-x:auto; margin-top:4px}
+  table{
+    width:100%; border-collapse:collapse; font-size:14px;
+    font-variant-numeric:tabular-nums;
+  }
+  th{
+    text-align:left; font-family:var(--serif); font-size:11px; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--mid); font-weight:600;
+    border-bottom:1px solid var(--line-dark); padding:8px 10px 8px 0; white-space:nowrap;
+  }
+  td{border-bottom:1px solid var(--line); padding:10px 10px 10px 0; vertical-align:top}
+  td.r, th.r{text-align:right; white-space:nowrap; padding-right:0}
+  tr.total td{
+    border-bottom:none; border-top:2px solid var(--line-dark); font-weight:700;
+    font-family:var(--serif);
+  }
+
+  /* ---------- options ---------- */
+  .opts{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:0; margin-top:4px; border-bottom:1px solid var(--line)}
+  .opt{border-top:1px solid var(--line); padding:14px 16px 14px 0; font-size:13.5px}
+  .opt .name{font-weight:600; letter-spacing:.03em}
+  .opt .price{
+    font-family:var(--serif); font-size:22px; font-weight:700; margin:2px 0;
+    font-variant-numeric:tabular-nums;
+  }
+  .opt .meta{font-size:12.5px; color:var(--mid)}
+
+  /* ---------- checkable ---------- */
+  .ck-group{margin:22px 0 0}
+  .ck-group h3{
+    font-size:13px; font-weight:600; letter-spacing:.14em; margin:0 0 2px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .cnt{
+    font-family:var(--serif); font-size:11.5px; font-weight:400; color:var(--mid);
+    letter-spacing:.08em; font-variant-numeric:tabular-nums;
+  }
+  .cklist{list-style:none; margin:0; padding:0}
+  label.ck{
+    display:flex; gap:13px; align-items:flex-start; cursor:pointer;
+    padding:9px 0; border-bottom:1px solid var(--line); font-size:14.5px;
+  }
+  .cklist li:last-child label.ck{border-bottom:none}
+  label.ck input{
+    appearance:none; -webkit-appearance:none; flex:none; margin:5px 0 0;
+    width:16px; height:16px; border:1.5px solid var(--ink); border-radius:0;
+    background:transparent; cursor:pointer; position:relative;
+  }
+  label.ck input:checked{background:var(--ink)}
+  label.ck input:checked::after{
+    content:"✕"; position:absolute; inset:0; color:var(--paper); font-size:11px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  label.ck input:focus-visible{outline:1.5px solid var(--ink); outline-offset:2px}
+  label.ck.done{opacity:.45}
+  label.ck.done .tx{text-decoration:line-through}
+  label.ck .small{display:block; font-size:12.5px; color:var(--mid)}
+
+  /* ---------- deals ---------- */
+  .deals{margin-top:4px}
+  .deal{
+    display:grid; grid-template-columns:110px 1fr; gap:14px;
+    border-bottom:1px solid var(--line); padding:13px 0; font-size:13.5px;
+  }
+  .deal .who{
+    font-family:var(--serif); font-size:12px; letter-spacing:.1em;
+    text-transform:uppercase; padding-top:2px;
+  }
+  .deal a{font-weight:600}
+
+  /* ---------- todo ---------- */
+  .todo{list-style:none; margin:4px 0 0; padding:0}
+  .todo li{
+    display:flex; gap:14px; align-items:flex-start;
+    border-bottom:1px solid var(--line); padding:13px 0; font-size:14.5px;
+  }
+  .todo li.hot{border-left:3px solid var(--ink); padding-left:12px}
+  .todo .pri{
+    flex:none; font-family:var(--serif); font-weight:700; font-size:15px;
+    font-variant-numeric:tabular-nums; width:26px; padding-top:1px;
+  }
+  .todo li > div{flex:1}
+  .todo .small{display:block; font-size:12.5px; color:var(--mid)}
+  label.ck.bare{border:none; padding:2px 0 0; margin-left:auto; flex:none}
+  .todo li:has(input:checked){opacity:.45}
+  .todo li:has(input:checked) > div{text-decoration:line-through}
+
+  footer{
+    margin-top:70px; padding-top:14px; border-top:2px solid var(--line-dark);
+    font-size:12px; color:var(--mid); line-height:2;
+  }
+  footer a{color:var(--mid)}
+  @media (max-width:560px){
+    .sec{grid-template-columns:24px 1fr; gap:10px}
+    .deal{grid-template-columns:1fr; gap:2px}
+    .day-head .num{font-size:36px}
+  }
+</style>
+
+<div class="wrap">
+<header>
+  <p class="kicker">Seoul&nbsp;/&nbsp;서울&nbsp;/&nbsp;首爾</p>
+  <div class="masthead">
+    <h1>消夏首爾，五日<span class="en">Itinerary &amp; Transport · Aug 12 – 16, 2026 · 2 Travelers</span></h1>
+    <p class="lede">住宿 Hotel ARA（東廟站旁）。金額為兩人同行估算，匯率以 ₩1,000 ≈ NT$23 計。</p>
+  </div>
+  <div class="facts">
+    <div><span class="k">Outbound</span><b>8/12</b>　TPE 18:10 → ICN 21:45　酷航</div>
+    <div><span class="k">Return</span><b>8/16</b>　ICN 23:00 → TPE 00:35+1</div>
+    <div><span class="k">Hotel</span>8/12 入住 16:00 起　·　8/16 退房 12:00</div>
+    <div><span class="k">Baggage</span>去程手提 10kg/人　·　回程加 20kg 托運</div>
+  </div>
+  <div class="alert">
+    <span class="h">Priority No.1</span>
+    飯店櫃檯只開到 24:00，你們抵達約凌晨 00:00–00:30——<b>出發前務必寫信到 hotel-ara@naver.com 確認深夜入住方式</b>（另注意 01:00–09:00 大門上鎖、外出需帶房卡）。
+  </div>
+</header>
+
+<nav aria-label="快捷">
+  <a href="#entry">入境申報</a>
+  <a href="#card">樂天卡</a>
+  <a href="#d12"><span class="d">8.12</span>抵達</a>
+  <a href="#d13"><span class="d">8.13</span>聖水</a>
+  <a href="#d14"><span class="d">8.14</span>POPCON</a>
+  <a href="#d15"><span class="d">8.15</span>鐘路</a>
+  <a href="#d16"><span class="d">8.16</span>回程</a>
+  <a href="#menus">菜單</a>
+  <a href="#cost">交通費</a>
+  <a href="#pack">行李</a>
+  <a href="#deals">優惠</a>
+  <a href="#todo">待辦</a>
+</nav>
+
+<!-- ================= entry ================= -->
+<section id="entry">
+  <div class="sec">
+    <span class="vlabel" aria-hidden="true">入境申報</span>
+    <div class="sec-body">
+      <div class="sec-head"><h2>電子入境卡（必辦）</h2><span class="en">e-Arrival Card</span></div>
+      <p class="prose">2026 年起韓國<b>取消紙本入境卡</b>，改為線上申報。台灣護照<b>免簽也免 K-ETA</b>（豁免延長至 2026/12/31），但<b>每人各填一份</b>電子入境卡，完全免費。</p>
+      <ol class="steps">
+        <li><b>時間</b>——抵達前 72 小時內開放填寫；你們 8/12 晚間落地，<b>8/10 起、上飛機前完成</b>最保險。</li>
+        <li><b>網站</b>——只用官方 <a href="https://www.e-arrivalcard.go.kr">e-arrivalcard.go.kr</a>（有中文介面）。<b>勿用付費代辦網站</b>，官方免費。</li>
+        <li><b>完成後</b>——截圖存手機備查；入境走人工櫃檯刷護照即可。</li>
+      </ol>
+      <div class="ck-group">
+        <h3>表格會用到的資料<span class="cnt" data-count="entry"></span></h3>
+        <ul class="cklist">
+          <li><label class="ck"><input type="checkbox" data-k="e1"><span class="tx">護照資料（兩人）＋航班：酷航 TPE→ICN 8/12（班號見訂位確認）</span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="e2"><span class="tx">韓國住址：<b>Hotel ARA, 60 Nangye-ro 29-gil, Seoul</b><span class="small">電話 +82-2-6367-1717（訂房確認信上的聯絡電話）</span></span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="e3"><span class="tx">兩人都填完＋截圖存手機</span></label></li>
+        </ul>
+      </div>
+      <p class="fine" style="margin-top:12px">海關申報：沒有應稅／管制物品就不用填海關申報單，直接走綠色通道。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Check in Seoul ================= -->
+<section id="card">
+  <div class="sec">
+    <span class="vlabel" aria-hidden="true">一卡在手</span>
+    <div class="sec-body">
+      <div class="sec-head"><h2>Check in Seoul 樂天卡</h2><span class="en">From Your IG Reel</span></div>
+      <p class="prose">Reel 介紹的是樂天給外國旅客的<b>五合一儲值卡</b>：信用卡儲值、提款、<b>T-money 交通卡</b>、SIM／機場巴士購買、樂天系 VIP 優惠。開卡費 ₩5,000（可從儲值金扣）、儲值免手續費。</p>
+      <ol class="steps">
+        <li><b>出發前（在台灣）</b>——下載 CHECK iN SEOUL App，申請卡片、綁定信用卡、完成護照認證。</li>
+        <li><b>8/12 落地後</b>——領完行李順路到機場自助機台<b>領卡＋儲值</b>（約 10 分鐘），之後地鐵、計程車、消費都刷它。</li>
+        <li><b>旅程中</b>——App 查餘額、線上加值、領優惠券；遺失可直接停卡。</li>
+      </ol>
+      <p class="prose">與行程直接相關的優惠：Olive Young 最高 8 折（8/16 明洞）、樂天超市 85 折＋樂天百貨 5% 返現（8/14 樂天塔）、樂天世界／水族館門票最低 7 折。</p>
+      <p class="fine">※ Reel 的「儲值 10 萬送 1 萬」活動標示至 5/31 止，8 月加碼以 App 內公告為準。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DAY 8.12 ================= -->
+<section id="d12">
+  <div class="sec">
+    <span class="vlabel" aria-hidden="true">第〇日</span>
+    <div class="sec-body">
+      <div class="day-head">
+        <span class="num">8.12</span><span class="wd">週三</span>
+        <span class="theme">抵達・深夜進城</span>
+        <span class="fare">交通 ₩47,500／人</span>
+      </div>
+      <ol class="tl">
+        <li><span class="t">15:30</span><div class="what">前往桃園機場（報到、掛行李）</div><div class="note">酷航手提 10kg 會秤重，液體 ≤100ml</div></li>
+        <li><span class="t">18:10</span><div class="what"><b>TPE 起飛</b></div><div class="note">飛行 2 小時 35 分</div></li>
+        <li><span class="t">21:45</span><div class="what"><b>落地仁川 T1</b>・入境＋領行李</div><div class="note">約 60–75 分鐘</div></li>
+        <li><span class="t">23:00</span><div class="what">機場自助機台<b>領 Check in Seoul 卡＋儲值</b><span class="tag">新增</span></div><div class="note">約 10 分鐘，順路完成</div></li>
+        <li><span class="t">23:15</span><div class="what">計程車進市區</div>
+          <div class="transit"><span class="mode">計程車</span>約 70 分・₩95,000 含深夜加成（兩人分攤 ₩47,500／人）</div>
+          <div class="note">這個時間搭地鐵會拖過凌晨一點、還要拖行李轉乘，直接搭車最穩</div></li>
+        <li><span class="t">00:15</span><div class="what"><b>抵達 Hotel ARA</b>，休息</div><div class="note">依飯店回信指示深夜 check-in</div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DAY 8.13 ================= -->
+<section id="d13">
+  <div class="sec">
+    <span class="vlabel" aria-hidden="true">第一日</span>
+    <div class="sec-body">
+      <div class="day-head">
+        <span class="num">8.13</span><span class="wd">週四</span>
+        <span class="theme">聖水・剪髮・音樂劇晚餐</span>
+        <span class="fare">交通 ₩3,100／人</span>
+      </div>
+      <ol class="tl">
+        <li><span class="t">10:00</span><div class="what">出發往聖水</div>
+          <div class="transit"><span class="mode">地鐵</span>東廟 → 新堂轉乘 → 聖水（6→2 號線）・約 20 分・₩1,550</div></li>
+        <li><span class="t">10:30</span><div class="what"><b>Soonsiki Hair 聖水店</b>・剪髮<span class="tag fill">需預約</span></div><div class="note">男女剪髮都擅長、英文服務；兩人約 1.5–2 小時，剪髮約 ₩33,000／人</div></li>
+        <li><span class="t">13:00</span><div class="what"><b>Kkamang</b>・午餐（朋友三訪）</div><div class="note">紅色的飯＝雞肉抓飯；菜單見下方〈菜單先看〉；15:00–16:30 午休，務必午休前入店</div></li>
+        <li><span class="t">14:30</span><div class="what"><b>Tamburins 聖水旗艦店</b>・試香</div><div class="note">試好香記下品項，機場免稅可能更便宜</div></li>
+        <li><span class="t">15:30</span><div class="what"><b>HAUS NOWHERE SEOUL</b>＋聖水潮牌街</div><div class="note">Gentle Monster 百貨；小店與咖啡自由散步</div></li>
+        <li><span class="t">18:30</span><div class="what">移動到新堂</div>
+          <div class="transit"><span class="mode">地鐵</span>聖水 → 新堂（2 號線直達）・約 10 分・₩1,550</div></li>
+        <li><span class="t">19:00</span><div class="what"><b>Showflix</b>・音樂劇餐酒館晚餐<span class="tag fill">Klook 先買</span></div><div class="note">百年米倉改建，每 30 分鐘一段現場音樂劇；餐點依 Klook 方案</div></li>
+        <li><span class="t">21:30</span><div class="what">散步回飯店</div>
+          <div class="transit"><span class="mode">步行</span>約 15 分・₩0（就在新堂，離飯店超近）</div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DAY 8.14 ================= -->
+<section id="d14">
+  <div class="sec">
+    <span class="vlabel" aria-hidden="true">第二日</span>
+    <div class="sec-body">
+      <div class="day-head">
+        <span class="num">8.14</span><span class="wd">週五</span>
+        <span class="theme">POPCON・T1 攤位・樂天塔</span>
+        <span class="fare">交通 ₩6,300／人</span>
+      </div>
+      <ol class="tl">
+        <li><span class="t">09:30</span><div class="what">出發往 COEX</div>
+          <div class="transit"><span class="mode">地鐵</span>東廟 → 新堂轉乘 → 三成（6→2 號線）・約 35 分・₩1,550</div></li>
+        <li><span class="t">10:00</span><div class="what"><b>Seoul POPCON</b>（CCXP 流行文化展）</div><div class="note">一日票 ₩28,000；動漫、遊戲、電影、webtoon 攤位與周邊市集</div></li>
+        <li><span class="t">12:30</span><div class="what"><b>星空圖書館</b>＋午餐</div><div class="note">COEX 同棟；% Arabica 點抹茶</div></li>
+        <li><span class="t">14:30</span><div class="what">移動到奧林匹克公園</div>
+          <div class="transit"><span class="mode">地鐵</span>三成 → 綜合運動場轉乘 → 漢城百濟（2→9 號線）・約 15 分・₩1,550</div></li>
+        <li><span class="t">15:00</span><div class="what"><b>T1 Home Ground 戶外攤位區</b>（HanEol 廣場）</div><div class="note">不用比賽門票也能逛周邊；戶外極熱，防曬補水。若搶到票直接進 KSPO DOME 看比賽</div></li>
+        <li><span class="t">17:00</span><div class="what">移動到蠶室</div>
+          <div class="transit"><span class="mode">地鐵</span>奧林匹克公園一帶 → 蠶室・約 15 分・₩1,550</div></li>
+        <li><span class="t">17:30</span><div class="what"><b>樂天世界塔／樂天世界 Mall</b></div><div class="note">Aqua Garden 咖啡水族館歇腳，吹冷氣一站式採買；樂天超市刷卡 85 折、百貨 5% 返現</div></li>
+        <li><span class="t">21:30</span><div class="what">回飯店</div>
+          <div class="transit"><span class="mode">地鐵</span>蠶室 → 新堂轉乘 → 東廟（2→6 號線）・約 35 分・₩1,650</div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DAY 8.15 ================= -->
+<section id="d15">
+  <div class="sec">
+    <span class="vlabel" aria-hidden="true">第三日</span>
+    <div class="sec-body">
+      <div class="day-head">
+        <span class="num">8.15</span><span class="wd">週六<span class="hol">光復節</span></span>
+        <span class="theme">鐘路老城區・長安洞排骨</span>
+        <span class="fare">交通 ₩11,050／人</span>
+      </div>
+      <ol class="tl">
+        <li><span class="t">10:15</span><div class="what">出發往廣藏市場</div>
+          <div class="transit"><span class="mode">地鐵</span>東廟 → 鐘路5街（1 號線，1 站）・約 5 分・₩1,550</div></li>
+        <li><span class="t">10:30</span><div class="what"><b>廣藏市場・통큰누이네（Nuine）</b>生牛肉拌飯</div><div class="note">國定假日人多，早點到；菜單見下方〈菜單先看〉</div></li>
+        <li><span class="t">13:00</span><div class="what"><b>益善洞・仁寺洞</b>散步、咖啡</div><div class="note">鐘路5街步行約 15 分</div></li>
+        <li><span class="t">15:00</span><div class="what"><b>景福宮或昌德宮</b></div><div class="note">光復節古宮免費；若拿到 8/15 T1 活動日門票，這段改去 KSPO DOME、古宮挪到 8/16 下午</div></li>
+        <li><span class="t">17:45</span><div class="what">計程車前往長安洞</div>
+          <div class="transit"><span class="mode">計程車</span>安國一帶 → 長安洞・約 20 分・₩12,000（分攤 ₩6,000／人）</div></li>
+        <li><span class="t">18:15</span><div class="what"><b>흥부골炭火豬王排骨・長安2號店</b><span class="tag fill">朋友最推</span></div><div class="note">排骨＋冷麵必點；店員代烤；菜單見下方〈菜單先看〉</div></li>
+        <li><span class="t">20:30</span><div class="what">計程車回飯店</div>
+          <div class="transit"><span class="mode">計程車</span>長安洞 → Hotel ARA・約 10 分・₩7,000（分攤 ₩3,500／人）</div>
+          <div class="note">長安洞離飯店很近，排這天晚上吃完直接回去最順</div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DAY 8.16 ================= -->
+<section id="d16">
+  <div class="sec">
+    <span class="vlabel" aria-hidden="true">第四日</span>
+    <div class="sec-body">
+      <div class="day-head">
+        <span class="num">8.16</span><span class="wd">週日</span>
+        <span class="theme">菜包肉・明洞採買・回程</span>
+        <span class="fare">交通 ₩8,800／人</span>
+      </div>
+      <ol class="tl">
+        <li><span class="t">11:30</span><div class="what"><b>退房</b>，行李寄放櫃檯</div></li>
+        <li><span class="t">12:00</span><div class="what">出發往仁寺洞</div>
+          <div class="transit"><span class="mode">地鐵</span>東廟 → 鐘路3街（1 號線）・約 10 分・₩1,550</div></li>
+        <li><span class="t">12:30</span><div class="what"><b>仁寺洞蒜蓉菜包肉</b>・午餐</div><div class="note">柚子熟成蒜醬配水煮豬肉；菜單見下方〈菜單先看〉</div></li>
+        <li><span class="t">14:15</span><div class="what">移動到明洞</div>
+          <div class="transit"><span class="mode">地鐵</span>鐘路3街 → 明洞一帶・約 10 分・₩1,550</div></li>
+        <li><span class="t">14:30</span><div class="what"><b>明洞</b>・最後採買</div><div class="note">Olive Young 刷樂天卡最高 8 折；Tamburins 留到機場免稅比價</div></li>
+        <li><span class="t">17:30</span><div class="what">回飯店取行李</div>
+          <div class="transit"><span class="mode">地鐵</span>明洞 → 東廟・約 15 分・₩1,550</div></li>
+        <li><span class="t">18:15</span><div class="what">出發去仁川機場</div>
+          <div class="transit"><span class="mode">地鐵</span>東廟 →（6 號線）→ 孔德 → AREX → 仁川 T1・約 85 分・₩4,150</div></li>
+        <li><span class="t">19:45</span><div class="what"><b>抵達 ICN T1</b>・報到＋免稅店</div><div class="note">托運 20kg 先跟飯店借行李秤確認</div></li>
+        <li><span class="t">23:00</span><div class="what"><b>起飛</b> → 00:35 抵達桃園</div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ================= menus ================= -->
+<section id="menus">
+  <div class="sec">
+    <span class="vlabel" aria-hidden="true">菜單先看</span>
+    <div class="sec-body">
+      <div class="sec-head"><h2>四家店的菜單，先翻譯好</h2><span class="en">Menus, Translated</span></div>
+      <p class="fine" style="margin-top:10px">● 為建議必點。價格為近期網路菜單查證，現場可能微調；點餐時把韓文名指給店員看即可。</p>
+
+      <div class="menu-block">
+        <p class="rname">Kkamang 까망 <span class="fine">聖水・8/13 午餐</span></p>
+        <p class="rmeta">義式抓飯與義大利麵小店・11:30–21:00（15:00–16:30 午休）・聖水站 4 號出口</p>
+        <ul class="mi">
+          <li class="star"><span class="kr">치킨 필라프</span><span class="zh">雞肉抓飯——朋友說的「紅色的飯」</span><span class="dots"></span><span class="p">₩17,000</span></li>
+          <li><span class="kr">차돌 필라프</span><span class="zh">牛五花抓飯</span><span class="dots"></span><span class="p">現場</span></li>
+          <li><span class="kr">소고기 크림 파스타</span><span class="zh">牛肉奶油義大利麵</span><span class="dots"></span><span class="p">₩18,000</span></li>
+          <li><span class="kr">라구 파스타／매운 라구</span><span class="zh">肉醬麵／辣味肉醬麵</span><span class="dots"></span><span class="p">現場</span></li>
+          <li><span class="kr">소고기 큐브 스테이크</span><span class="zh">牛肉骰子牛排</span><span class="dots"></span><span class="p">現場</span></li>
+          <li><span class="kr">까망 프라이즈</span><span class="zh">招牌薯條（小點）</span><span class="dots"></span><span class="p">現場</span></li>
+        </ul>
+        <div class="order-tip"><span class="h">Order</span>照朋友的吃法：一份雞肉抓飯＋一份不同的（肉醬麵或骰子牛排），兩人分著吃才不膩。</div>
+      </div>
+
+      <div class="menu-block">
+        <p class="rname">통큰누이네 육회빈대떡 <span class="fine">廣藏市場・8/15 午餐</span></p>
+        <p class="rmeta">生牛肉與綠豆煎餅老攤・09:00–22:30・鐘路5街站</p>
+        <ul class="mi">
+          <li class="star"><span class="kr">육회비빔밥</span><span class="zh">生牛肉拌飯——朋友二訪主打</span><span class="dots"></span><span class="p">₩10,000</span></li>
+          <li><span class="kr">세트（빈대떡＋완자＋육회）</span><span class="zh">套餐：綠豆煎餅＋肉丸煎餅＋生牛肉</span><span class="dots"></span><span class="p">₩25,000</span></li>
+          <li><span class="kr">누이네 세트</span><span class="zh">升級套餐（同上、份量加大）</span><span class="dots"></span><span class="p">₩29,000</span></li>
+          <li><span class="kr">고기완자</span><span class="zh">肉丸煎餅（單張）</span><span class="dots"></span><span class="p">₩3,000</span></li>
+          <li><span class="kr">마약김밥</span><span class="zh">迷你「上癮」海苔飯捲（7 條）</span><span class="dots"></span><span class="p">₩3,000</span></li>
+        </ul>
+        <div class="order-tip"><span class="h">Order</span>兩人建議：拌飯一碗＋₩25,000 套餐，一次吃到煎餅、肉丸、生牛肉；配一瓶馬格利。</div>
+      </div>
+
+      <div class="menu-block">
+        <p class="rname">인사동 마늘보쌈 <span class="fine">仁寺洞・8/16 午餐</span></p>
+        <p class="rmeta">蒜蓉菜包肉專門店・安國站步行約 7 分</p>
+        <ul class="mi">
+          <li class="star"><span class="kr">마늘보쌈</span><span class="zh">蒜蓉菜包肉——柚子熟成蒜醬＋水煮豬肉（依人數點小／中／大）</span><span class="dots"></span><span class="p">現場</span></li>
+          <li><span class="kr">부추전</span><span class="zh">韭菜煎餅</span><span class="dots"></span><span class="p">現場</span></li>
+          <li><span class="kr">뚝배기 두부김치</span><span class="zh">砂鍋豆腐炒泡菜</span><span class="dots"></span><span class="p">現場</span></li>
+          <li><span class="kr">열무비빔국수</span><span class="zh">蘿蔔纓拌麵（解膩用）</span><span class="dots"></span><span class="p">現場</span></li>
+          <li><span class="kr">밤막걸리</span><span class="zh">栗子馬格利（招牌酒）</span><span class="dots"></span><span class="p">現場</span></li>
+          <li><span class="kr">평일 보쌈정식</span><span class="zh">平日午間套餐（11:00–14:00）——你們是週日去，吃不到這個價</span><span class="dots"></span><span class="p">₩12,000</span></li>
+        </ul>
+        <div class="order-tip"><span class="h">Order</span>兩人：小份蒜蓉菜包肉＋韭菜煎餅或拌麵；醬蒜是靈魂，包著吃。</div>
+      </div>
+
+      <div class="menu-block">
+        <p class="rname">흥부골 숯불돼지왕갈비 장안2호점 <span class="fine">長安洞・8/15 晚餐</span></p>
+        <p class="rmeta">炭火豬排骨・11:30–22:30・店員全程代烤</p>
+        <ul class="mi">
+          <li class="star"><span class="kr">돼지왕고기（왕갈비）</span><span class="zh">豬王排骨——朋友「巨爆炸好吃」的主角</span><span class="dots"></span><span class="p">₩23,000</span></li>
+          <li><span class="kr">스테이크 돼지고기</span><span class="zh">厚切豬排肉</span><span class="dots"></span><span class="p">₩19,000</span></li>
+          <li class="star"><span class="kr">물냉면</span><span class="zh">水冷麵——朋友指定「冷麵配排骨」的那碗</span><span class="dots"></span><span class="p">現場</span></li>
+          <li><span class="kr">비빔냉면</span><span class="zh">辣拌冷麵</span><span class="dots"></span><span class="p">現場</span></li>
+          <li><span class="kr">공기밥</span><span class="zh">白飯</span><span class="dots"></span><span class="p">₩1,000</span></li>
+        </ul>
+        <div class="order-tip"><span class="h">Order</span>兩人：王排骨兩份起＋水冷麵；小菜（蒸蛋、辣炒年糕、大醬鍋）多為免費附贈，冷麵部分時段點肉附贈——先問店員。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= airport options ================= -->
+<section>
+  <div class="sec">
+    <span class="vlabel" aria-hidden="true">往機場</span>
+    <div class="sec-body">
+      <div class="sec-head"><h2>8/16 去機場三種方式</h2><span class="en">To ICN</span></div>
+      <div class="opts">
+        <div class="opt">
+          <div class="name">地鐵＋AREX<span class="tag fill">建議</span></div>
+          <div class="price">₩4,150<span class="fine">／人</span></div>
+          <div class="meta">約 85 分・孔德轉乘一次；週日傍晚不塞車、時間最好抓</div>
+        </div>
+        <div class="opt">
+          <div class="name">機場巴士</div>
+          <div class="price">₩16,000<span class="fine">／人</span></div>
+          <div class="meta">約 100 分・東大門一帶上車直達；行李輕鬆但怕塞車</div>
+        </div>
+        <div class="opt">
+          <div class="name">計程車</div>
+          <div class="price">₩90,000<span class="fine">／車</span></div>
+          <div class="meta">約 70 分（分攤 ₩45,000／人）・最舒服，預算高時選</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= cost ================= -->
+<section id="cost">
+  <div class="sec">
+    <span class="vlabel" aria-hidden="true">交通費</span>
+    <div class="sec-body">
+      <div class="sec-head"><h2>全程交通估算</h2><span class="en">Transport Budget</span></div>
+      <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Date</th><th>內容</th><th class="r">每人</th><th class="r">約台幣</th></tr></thead>
+        <tbody>
+          <tr><td>8/12</td><td>機場 → 飯店 深夜計程車（兩人分攤）</td><td class="r">₩47,500</td><td class="r">NT$1,090</td></tr>
+          <tr><td>8/13</td><td>地鐵 ×2</td><td class="r">₩3,100</td><td class="r">NT$70</td></tr>
+          <tr><td>8/14</td><td>地鐵 ×4</td><td class="r">₩6,300</td><td class="r">NT$145</td></tr>
+          <tr><td>8/15</td><td>地鐵 ×1＋計程車 ×2（分攤）</td><td class="r">₩11,050</td><td class="r">NT$255</td></tr>
+          <tr><td>8/16</td><td>市區地鐵 ×3＋AREX 去機場</td><td class="r">₩8,800</td><td class="r">NT$200</td></tr>
+          <tr class="total"><td colspan="2">全程合計（每人）</td><td class="r">₩76,750</td><td class="r">NT$1,760</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="fine" style="margin-top:12px">建議樂天卡先儲 ₩100,000／人：蓋掉全部交通還有餘額吃小吃。地鐵單程 ₩1,550 起（依距離微增）；深夜計程車含 20% 加成估算。</p>
+
+      <div class="tbl-wrap" style="margin-top:28px">
+      <table>
+        <thead><tr><th>票券</th><th>狀態</th><th class="r">每人</th><th class="r">約台幣</th></tr></thead>
+        <tbody>
+          <tr><td>Seoul POPCON 一日票（8/14）</td><td class="fine">線上或現場買</td><td class="r">₩28,000</td><td class="r">NT$645</td></tr>
+          <tr><td>T1 Home Ground 一日券</td><td class="fine">8/14、16 完售，盯 NOL 退票；8/15 待查</td><td class="r">₩55,000–165,000</td><td class="r">NT$1,265–3,795</td></tr>
+          <tr><td>Soonsiki 剪髮</td><td class="fine">官網預約</td><td class="r">₩33,000 起</td><td class="r">NT$760 起</td></tr>
+          <tr><td>Showflix（8/13 晚）</td><td class="fine">Klook 購票，含餐方案價格不同</td><td class="r">依方案</td><td class="r">—</td></tr>
+          <tr><td>Check in Seoul 開卡費</td><td class="fine">從儲值金扣</td><td class="r">₩5,000</td><td class="r">NT$115</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= packing ================= -->
+<section id="pack">
+  <div class="sec">
+    <span class="vlabel" aria-hidden="true">行李清單</span>
+    <div class="sec-body">
+      <div class="sec-head"><h2>行李與注意事項</h2><span class="cnt" data-count="pack"></span><span class="en">Packing</span></div>
+      <p class="prose fine">點一下打勾，進度會記住。去程：<b>手提 10kg／人</b>（酷航限 54×38×23cm＋小包 40×30×10cm，會秤重）。回程：多一顆 <b>20kg 托運</b>。<b>去程全手提＝所有液體必須 ≤100ml</b>，大瓶的到韓國再買。</p>
+
+      <div class="ck-group">
+        <h3>證件・錢・申報</h3>
+        <ul class="cklist">
+          <li><label class="ck"><input type="checkbox" data-k="p1"><span class="tx">護照（效期 6 個月以上）＋拍照備份</span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p2"><span class="tx">電子入境卡兩人都填完（見最上面）</span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p3"><span class="tx">Agoda 訂房確認＋酷航訂位截圖（離線可看）</span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p4"><span class="tx">信用卡（一張綁 CHECK iN SEOUL App）＋少量現金</span></label></li>
+        </ul>
+      </div>
+
+      <div class="ck-group">
+        <h3>3C・網路</h3>
+        <ul class="cklist">
+          <li><label class="ck"><input type="checkbox" data-k="p5"><span class="tx">手機充電線＋豆腐頭<span class="small">轉接頭不用帶——飯店免費出借（韓國 220V 圓兩孔）</span></span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p6"><span class="tx">行動電源 ≤100Wh<span class="small">只能手提、不可托運（回程也是）；機上不可使用或充電</span></span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p7"><span class="tx">網路：eSIM 先買好，或落地用樂天卡 App 買 SIM</span></label></li>
+        </ul>
+      </div>
+
+      <div class="ck-group">
+        <h3>衣物（8 月首爾 26–34°C，悶熱、偶陣雨）</h3>
+        <ul class="cklist">
+          <li><label class="ck"><input type="checkbox" data-k="p8"><span class="tx">短袖 4–5 套＋薄外套 1 件（百貨、地鐵冷氣強）</span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p9"><span class="tx">好走的鞋（每天約兩萬步）</span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p10"><span class="tx">摺疊傘（遮陽擋雨兩用，T1 攤位區在戶外）</span></label></li>
+        </ul>
+      </div>
+
+      <div class="ck-group">
+        <h3>盥洗・藥品（手提液體規則）</h3>
+        <ul class="cklist">
+          <li><label class="ck"><input type="checkbox" data-k="p11"><span class="tx">液體全部 ≤100ml、裝 1L 夾鏈袋<span class="small">防曬乳也算液體；大瓶的落地後 Olive Young 補貨最划算</span></span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p12"><span class="tx">個人藥品、腸胃藥、OK 繃</span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p13"><span class="tx">不用帶：離子夾、行李秤——飯店免費出借</span></label></li>
+        </ul>
+      </div>
+
+      <div class="ck-group">
+        <h3>回程打包策略（20kg 托運）</h3>
+        <ul class="cklist">
+          <li><label class="ck"><input type="checkbox" data-k="p14"><span class="tx">香水、保養品、所有 &gt;100ml 液體 → 全進托運箱</span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p15"><span class="tx">行動電源、鋰電池 → 一樣只能手提</span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p16"><span class="tx">跟櫃檯借行李秤確認 ≤20kg（酷航超重費很貴）</span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="p17"><span class="tx">回台免稅額：物品總值 NT$2 萬、酒 1 公升、菸 200 支內</span></label></li>
+        </ul>
+      </div>
+
+      <div class="ck-group">
+        <h3>住宿注意事項（看過就打勾）</h3>
+        <ul class="cklist">
+          <li><label class="ck"><input type="checkbox" data-k="n1"><span class="tx">大門 01:00–09:00 上鎖，深夜外出一定帶房卡</span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="n2"><span class="tx">櫃檯 09:00–24:00；房卡一房一張，要多張跟櫃檯要</span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="n3"><span class="tx">早餐（自選）：100m 外 Hotel DM 1 樓自助式，07:30–10:00、₩12,000／人</span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="n4"><span class="tx">全館禁菸，違者罰 ₩100,000；吸菸區在 1 樓後門</span></label></li>
+          <li><label class="ck"><input type="checkbox" data-k="n5"><span class="tx">叫車裝 Kakao T（可綁台灣信用卡），深夜計程車有加成屬正常</span></label></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= deals ================= -->
+<section id="deals">
+  <div class="sec">
+    <span class="vlabel" aria-hidden="true">優惠總覽</span>
+    <div class="sec-body">
+      <div class="sec-head"><h2>優惠資訊</h2><span class="en">Deals</span></div>
+      <div class="deals">
+        <div class="deal"><span class="who">Lotte Card</span><div><a href="https://apps.apple.com/tw/app/check-in-seoul/id6755703262">CHECK iN SEOUL App</a>——Olive Young 最高 8 折、樂天超市 85 折、樂天百貨 5% 返現、樂天世界／水族館最低 7 折；「儲 10 萬送 1 萬」標到 5/31，8 月加碼以 App 公告為準。</div></div>
+        <div class="deal"><span class="who">8/15</span><div><b>光復節古宮免費</b>——景福宮、昌德宮等當日免門票，行程第三日直接受惠。</div></div>
+        <div class="deal"><span class="who">Showflix</span><div><a href="https://www.klook.com/en-US/activity/124328-korean-musical-pub-in-seoul-showfilx/">Klook 購票</a>——線上先買比現場划算，含餐方案直接當 8/13 晚餐。</div></div>
+        <div class="deal"><span class="who">POPCON</span><div><a href="https://en.seoulpopcon.org/">官網</a>——一日票 ₩28,000；不定期放早鳥／組合優惠，買前掃一眼。</div></div>
+        <div class="deal"><span class="who">T1</span><div><a href="https://world.nol.com/en/ticket/places/26000780/products/26009817">NOL World 售票頁</a>——盯退票用；新帳號偶有首購折扣碼，結帳前看一下。</div></div>
+        <div class="deal"><span class="who">Soonsiki</span><div><a href="https://www.soonsiki.com/">官網預約</a>——價目透明（剪髮約 ₩33,000 起），免訂金。</div></div>
+        <div class="deal"><span class="who">Tamburins</span><div>聖水店試香記品項，<b>仁川機場免稅店</b>買最便宜（回程 19:45 後有時間逛）。</div></div>
+        <div class="deal"><span class="who">Hotel</span><div><b>免費租借</b>轉接頭、離子夾、行李秤（訂房確認信寫明），行李直接省三樣。</div></div>
+        <div class="deal"><span class="who">Scoot</span><div><a href="https://www.flyscoot.com/zhtw/plan/booking-your-flight/baggage">酷航行李規定官方頁</a>——出發前再確認手提 10kg／54×38×23cm 與托運額度。</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= todo ================= -->
+<section id="todo">
+  <div class="sec">
+    <span class="vlabel" aria-hidden="true">出發前</span>
+    <div class="sec-body">
+      <div class="sec-head"><h2>待辦（照順序做）</h2><span class="en">To-do</span></div>
+      <ol class="todo" id="todolist">
+        <li class="hot"><span class="pri">01</span><div><b>寫信給飯店確認深夜 check-in</b>（hotel-ara@naver.com）<span class="small">你們抵達時櫃檯已關，這件最急、影響第一晚能不能睡。</span></div><label class="ck bare"><input type="checkbox" data-k="t1" aria-label="完成"></label></li>
+        <li><span class="pri">02</span><div><b>Soonsiki 官網預約 8/13 上午剪髮 ×2</b><span class="small">soonsiki.com 英文介面直接訂，指定聖水店（Seongsu）。熱門要早搶。</span></div><label class="ck bare"><input type="checkbox" data-k="t2" aria-label="完成"></label></li>
+        <li><span class="pri">03</span><div><b>兩人各填電子入境卡</b>（8/10 起）<span class="small">官方免費：e-arrivalcard.go.kr，資料見最上面申報區。</span></div><label class="ck bare"><input type="checkbox" data-k="t3" aria-label="完成"></label></li>
+        <li><span class="pri">04</span><div><b>下載 CHECK iN SEOUL App 完成申請＋護照認證</b><span class="small">在台灣先辦好，落地只要領卡；順便看 8 月儲值加碼活動。</span></div><label class="ck bare"><input type="checkbox" data-k="t4" aria-label="完成"></label></li>
+        <li><span class="pri">05</span><div><b>每天刷 NOL World 的 T1 頁面</b><span class="small">確認 8/15 活動日是否有票＋盯 8/14、8/16 退票釋出。不要找 FB 代搶（詐騙風險）。</span></div><label class="ck bare"><input type="checkbox" data-k="t5" aria-label="完成"></label></li>
+        <li><span class="pri">06</span><div><b>Klook 買 Showflix 8/13 晚場</b><span class="small">選含餐方案當晚餐。</span></div><label class="ck bare"><input type="checkbox" data-k="t6" aria-label="完成"></label></li>
+        <li><span class="pri">07</span><div><b>買 POPCON 8/14 一日票</b><span class="small">官網連售票平台，現場也買得到、不急。</span></div><label class="ck bare"><input type="checkbox" data-k="t7" aria-label="完成"></label></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<footer>
+  費用與菜單價格皆為查證後估算（匯率 ₩1,000 ≈ NT$23），實際以現場為準。備用口袋名單：新村「Delicious Sundubu 豆腐鍋」（24h，往弘大方向才順路）。<br>
+  <a href="https://world.nol.com/en/ticket/places/26000780/products/26009817">NOL World T1 售票頁</a> ·
+  <a href="https://www.invenglobal.com/articles/24183/t1-home-ground-all-tickets-sold-out-for-august-14-and-16">Inven Global 完售報導</a> ·
+  <a href="https://en.seoulpopcon.org/">Seoul POPCON</a> ·
+  <a href="https://www.soonsiki.com/">Soonsiki</a> ·
+  <a href="https://www.klook.com/en-US/activity/124328-korean-musical-pub-in-seoul-showfilx/">Klook Showflix</a> ·
+  <a href="https://www.hotel-dm.com/hotel-ara">Hotel ARA</a> ·
+  <a href="https://www.e-arrivalcard.go.kr">電子入境卡官網</a> ·
+  <a href="https://www.flyscoot.com/zhtw/plan/booking-your-flight/baggage">酷航行李規定</a>
+</footer>
+</div>
+
+<script>
+(function(){
+  var boxes = document.querySelectorAll('input[data-k]');
+  function refreshCounts(){
+    document.querySelectorAll('[data-count]').forEach(function(s){
+      var root = document.getElementById(s.getAttribute('data-count'));
+      if(!root) return;
+      var all = root.querySelectorAll('input[data-k]');
+      var done = 0;
+      all.forEach(function(c){ if(c.checked) done++; });
+      s.textContent = done + ' / ' + all.length;
+    });
+  }
+  boxes.forEach(function(cb){
+    var key = 'seoul2608.' + cb.getAttribute('data-k');
+    try{ cb.checked = localStorage.getItem(key) === '1'; }catch(e){}
+    var lab = cb.closest('label.ck');
+    function sync(){ if(lab && !lab.classList.contains('bare')) lab.classList.toggle('done', cb.checked); }
+    sync();
+    cb.addEventListener('change', function(){
+      try{ localStorage.setItem(key, cb.checked ? '1' : '0'); }catch(e){}
+      sync(); refreshCounts();
+    });
+  });
+  refreshCounts();
+})();
+</script>
