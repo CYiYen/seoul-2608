@@ -6,6 +6,7 @@
 <meta name="robots" content="noindex">
 </head>
 <body>
+<meta charset="utf-8">
 <title>首爾五日｜8/12–16 行程＋交通</title>
 <style>
   :root{
@@ -169,6 +170,10 @@
     position:relative; top:-1.5px; line-height:1.7;
   }
   .tag.fill{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+  .twd{
+    font-size:11.5px; color:var(--mid); font-variant-numeric:tabular-nums;
+    margin-left:2px; white-space:nowrap;
+  }
 
   /* ---------- menu ---------- */
   .menu-block{border-bottom:1px solid var(--line); padding:20px 0 22px}
@@ -300,7 +305,7 @@
   <p class="kicker">Seoul&nbsp;/&nbsp;서울&nbsp;/&nbsp;首爾</p>
   <div class="masthead">
     <h1>消夏首爾，五日<span class="en">Itinerary &amp; Transport · Aug 12 – 16, 2026 · 2 Travelers</span></h1>
-    <p class="lede">住宿 Hotel ARA（東廟站旁）。金額為兩人同行估算，匯率以 ₩1,000 ≈ NT$23 計。</p>
+    <p class="lede">住宿 Hotel ARA（東廟站旁）。金額為兩人同行估算；台幣以即時匯率換算<span id="ratenote"></span>。</p>
   </div>
   <div class="facts">
     <div><span class="k">Outbound</span><b>8/12</b>　TPE 18:10 → ICN 21:45　酷航</div>
@@ -609,12 +614,12 @@
       <table>
         <thead><tr><th>Date</th><th>內容</th><th class="r">每人</th><th class="r">約台幣</th></tr></thead>
         <tbody>
-          <tr><td>8/12</td><td>機場 → 飯店 深夜計程車（兩人分攤）</td><td class="r">₩47,500</td><td class="r">NT$1,090</td></tr>
-          <tr><td>8/13</td><td>地鐵 ×2</td><td class="r">₩3,100</td><td class="r">NT$70</td></tr>
-          <tr><td>8/14</td><td>地鐵 ×4</td><td class="r">₩6,300</td><td class="r">NT$145</td></tr>
-          <tr><td>8/15</td><td>地鐵 ×1＋計程車 ×2（分攤）</td><td class="r">₩11,050</td><td class="r">NT$255</td></tr>
-          <tr><td>8/16</td><td>市區地鐵 ×3＋AREX 去機場</td><td class="r">₩8,800</td><td class="r">NT$200</td></tr>
-          <tr class="total"><td colspan="2">全程合計（每人）</td><td class="r">₩76,750</td><td class="r">NT$1,760</td></tr>
+          <tr><td>8/12</td><td>機場 → 飯店 深夜計程車（兩人分攤）</td><td class="r">₩47,500</td><td class="r" data-krw="47500">NT$1,090</td></tr>
+          <tr><td>8/13</td><td>地鐵 ×2</td><td class="r">₩3,100</td><td class="r" data-krw="3100">NT$70</td></tr>
+          <tr><td>8/14</td><td>地鐵 ×4</td><td class="r">₩6,300</td><td class="r" data-krw="6300">NT$145</td></tr>
+          <tr><td>8/15</td><td>地鐵 ×1＋計程車 ×2（分攤）</td><td class="r">₩11,050</td><td class="r" data-krw="11050">NT$255</td></tr>
+          <tr><td>8/16</td><td>市區地鐵 ×3＋AREX 去機場</td><td class="r">₩8,800</td><td class="r" data-krw="8800">NT$200</td></tr>
+          <tr class="total"><td colspan="2">全程合計（每人）</td><td class="r">₩76,750</td><td class="r" data-krw="76750">NT$1,760</td></tr>
         </tbody>
       </table>
       </div>
@@ -624,11 +629,11 @@
       <table>
         <thead><tr><th>票券</th><th>狀態</th><th class="r">每人</th><th class="r">約台幣</th></tr></thead>
         <tbody>
-          <tr><td>Seoul POPCON 一日票（8/14）</td><td class="fine">線上或現場買</td><td class="r">₩28,000</td><td class="r">NT$645</td></tr>
-          <tr><td>T1 Home Ground 一日券</td><td class="fine">8/14、16 完售，盯 NOL 退票；8/15 待查</td><td class="r">₩55,000–165,000</td><td class="r">NT$1,265–3,795</td></tr>
-          <tr><td>Soonsiki 剪髮</td><td class="fine">官網預約</td><td class="r">₩33,000 起</td><td class="r">NT$760 起</td></tr>
+          <tr><td>Seoul POPCON 一日票（8/14）</td><td class="fine">線上或現場買</td><td class="r">₩28,000</td><td class="r" data-krw="28000">NT$645</td></tr>
+          <tr><td>T1 Home Ground 一日券</td><td class="fine">8/14、16 完售，盯 NOL 退票；8/15 待查</td><td class="r">₩55,000–165,000</td><td class="r" data-krw="55000-165000">NT$1,265–3,795</td></tr>
+          <tr><td>Soonsiki 剪髮</td><td class="fine">官網預約</td><td class="r">₩33,000 起</td><td class="r" data-krw="33000" data-suffix=" 起">NT$760 起</td></tr>
           <tr><td>Showflix（8/13 晚）</td><td class="fine">Klook 購票，含餐方案價格不同</td><td class="r">依方案</td><td class="r">—</td></tr>
-          <tr><td>Check in Seoul 開卡費</td><td class="fine">從儲值金扣</td><td class="r">₩5,000</td><td class="r">NT$115</td></tr>
+          <tr><td>Check in Seoul 開卡費</td><td class="fine">從儲值金扣</td><td class="r">₩5,000</td><td class="r" data-krw="5000">NT$115</td></tr>
         </tbody>
       </table>
       </div>
@@ -746,7 +751,7 @@
 </section>
 
 <footer>
-  費用與菜單價格皆為查證後估算（匯率 ₩1,000 ≈ NT$23），實際以現場為準。備用口袋名單：新村「Delicious Sundubu 豆腐鍋」（24h，往弘大方向才順路）。<br>
+  費用與菜單價格皆為查證後估算，實際以現場為準。台幣為開頁時的即時匯率（來源 open.er-api.com）；連不上時以 1 : 0.022 估算。備用口袋名單：新村「Delicious Sundubu 豆腐鍋」（24h，往弘大方向才順路）。<br>
   <a href="https://world.nol.com/en/ticket/places/26000780/products/26009817">NOL World T1 售票頁</a> ·
   <a href="https://www.invenglobal.com/articles/24183/t1-home-ground-all-tickets-sold-out-for-august-14-and-16">Inven Global 完售報導</a> ·
   <a href="https://en.seoulpopcon.org/">Seoul POPCON</a> ·
@@ -783,6 +788,69 @@
     });
   });
   refreshCounts();
+})();
+
+/* 即時匯率：KRW → TWD 換算備注 */
+(function(){
+  var FALLBACK = 0.022;
+  function fmt(n){
+    n = Math.round(n);
+    if(n >= 1000) n = Math.round(n/10)*10;
+    return n.toLocaleString('en-US');
+  }
+  function annotate(rate, live){
+    var note = document.getElementById('ratenote');
+    if(note) note.textContent = '（現在 ₩1,000 ≈ NT$' + (rate*1000).toFixed(1) + (live ? '' : '，離線估算') + '）';
+    document.querySelectorAll('[data-krw]').forEach(function(td){
+      var parts = td.getAttribute('data-krw').split('-');
+      var text = 'NT$' + fmt(parseInt(parts[0],10)*rate);
+      if(parts[1]) text += '–' + fmt(parseInt(parts[1],10)*rate);
+      td.textContent = text + (td.getAttribute('data-suffix') || '');
+    });
+    var nodes = [];
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){
+        if(n.nodeValue.indexOf('₩') === -1) return NodeFilter.FILTER_REJECT;
+        var p = n.parentElement;
+        if(!p || p.closest('.tbl-wrap, nav, footer, .twd, #ratenote, script, style')) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while(walker.nextNode()) nodes.push(walker.currentNode);
+    var re = /₩([\d,]{3,})(?:\s*[–\-]\s*[₩]?([\d,]{3,}))?/g;
+    nodes.forEach(function(node){
+      var text = node.nodeValue, m, last = 0, found = false;
+      var frag = document.createDocumentFragment();
+      re.lastIndex = 0;
+      while((m = re.exec(text))){
+        found = true;
+        frag.appendChild(document.createTextNode(text.slice(last, m.index + m[0].length)));
+        var s = document.createElement('span');
+        s.className = 'twd';
+        var a = parseInt(m[1].replace(/,/g,''),10);
+        if(m[2]){
+          var b = parseInt(m[2].replace(/,/g,''),10);
+          s.textContent = '（≈NT$' + fmt(a*rate) + '–' + fmt(b*rate) + '）';
+        }else{
+          s.textContent = '（≈NT$' + fmt(a*rate) + '）';
+        }
+        frag.appendChild(s);
+        last = m.index + m[0].length;
+      }
+      if(found){
+        frag.appendChild(document.createTextNode(text.slice(last)));
+        node.parentNode.replaceChild(frag, node);
+      }
+    });
+  }
+  fetch('https://open.er-api.com/v6/latest/KRW')
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      var rate = d && d.rates && d.rates.TWD;
+      if(typeof rate === 'number' && rate > 0){ annotate(rate, true); }
+      else{ annotate(FALLBACK, false); }
+    })
+    .catch(function(){ annotate(FALLBACK, false); });
 })();
 </script>
 
