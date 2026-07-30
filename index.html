@@ -298,9 +298,48 @@
     .deal{grid-template-columns:1fr; gap:2px}
     .day-head .num{font-size:36px}
   }
+
+  /* ---------- edit mode ---------- */
+  .edit-toolbar{
+    position:fixed; right:16px; bottom:16px; z-index:50;
+    display:flex; gap:8px; align-items:center; flex-wrap:wrap;
+    max-width:calc(100vw - 32px);
+    background:var(--surface); border:1px solid var(--line-dark);
+    padding:8px 10px; border-radius:999px; box-shadow:0 4px 18px rgba(0,0,0,.16);
+  }
+  .edit-toolbar button{
+    font-family:var(--sans); font-size:12.5px; letter-spacing:.03em;
+    border:1px solid var(--line-dark); background:var(--ink); color:var(--paper);
+    padding:7px 14px; border-radius:999px; cursor:pointer; white-space:nowrap;
+  }
+  .edit-toolbar .edit-reset{background:transparent; color:var(--mid); border-color:var(--line)}
+  .edit-toolbar .edit-flash{
+    font-size:11px; color:var(--mid); opacity:0; transition:opacity .3s;
+    min-width:36px; font-variant-numeric:tabular-nums;
+  }
+  body.editing #wrap{ outline:none; }
+  body.editing .tl li, body.editing .mi li, body.editing .cklist li, body.editing .todo li,
+  body.editing .deal, body.editing .opt, body.editing .steps li{
+    position:relative; padding-right:32px !important;
+    background:var(--surface); outline:1px dashed var(--line); outline-offset:3px;
+  }
+  .del-btn{
+    position:absolute; right:2px; top:8px; width:22px; height:22px;
+    border:1px solid var(--line-dark); background:var(--paper); color:var(--ink);
+    border-radius:50%; font-size:12px; line-height:1; cursor:pointer; display:none;
+    padding:0; align-items:center; justify-content:center;
+  }
+  body.editing .del-btn{ display:flex; }
+  .add-btn{
+    display:none; margin-top:10px; font-family:var(--sans); font-size:12.5px; color:var(--mid);
+    border:1px dashed var(--line-dark); background:transparent; padding:8px 12px;
+    border-radius:8px; cursor:pointer; width:100%; text-align:center; letter-spacing:.03em;
+  }
+  body.editing .add-btn{ display:block; }
+  body.editing [contenteditable="true"]:focus{ outline:1.5px solid var(--ink); outline-offset:1px; }
 </style>
 
-<div class="wrap">
+<div class="wrap" id="wrap">
 <header>
   <p class="kicker">Seoul&nbsp;/&nbsp;서울&nbsp;/&nbsp;首爾</p>
   <div class="masthead">
@@ -781,6 +820,14 @@
 </div>
 
 <script>
+(function(){ // 還原上次的編輯內容（必須最先執行）
+  var wrap = document.getElementById('wrap');
+  if(!wrap) return;
+  try{
+    var saved = localStorage.getItem('seoul2608.wrap.v1');
+    if(saved) wrap.innerHTML = saved;
+  }catch(e){}
+})();
 (function(){
   var boxes = document.querySelectorAll('input[data-k]');
   function refreshCounts(){
@@ -794,6 +841,7 @@
     });
   }
   boxes.forEach(function(cb){
+    cb.dataset.wired = '1';
     var key = 'seoul2608.' + cb.getAttribute('data-k');
     try{ cb.checked = localStorage.getItem(key) === '1'; }catch(e){}
     var lab = cb.closest('label.ck');
@@ -818,18 +866,23 @@
   function annotate(rate, live){
     var note = document.getElementById('ratenote');
     if(note) note.textContent = '（現在 ₩1,000 ≈ NT$' + (rate*1000).toFixed(1) + (live ? '' : '，離線估算') + '）';
+    document.querySelectorAll('.twd').forEach(function(n){ n.remove(); });
     document.querySelectorAll('[data-krw]').forEach(function(td){
       var parts = td.getAttribute('data-krw').split('-');
       var text = 'NT$' + fmt(parseInt(parts[0],10)*rate);
       if(parts[1]) text += '–' + fmt(parseInt(parts[1],10)*rate);
       td.textContent = text + (td.getAttribute('data-suffix') || '');
+      td.contentEditable = 'false';
     });
+    document.querySelectorAll('.cnt').forEach(function(n){ n.contentEditable = 'false'; });
+    var navEl = document.querySelector('#wrap nav');
+    if(navEl) navEl.contentEditable = 'false';
     var nodes = [];
     var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
       acceptNode: function(n){
         if(n.nodeValue.indexOf('₩') === -1) return NodeFilter.FILTER_REJECT;
         var p = n.parentElement;
-        if(!p || p.closest('.tbl-wrap, nav, footer, .twd, #ratenote, script, style')) return NodeFilter.FILTER_REJECT;
+        if(!p || p.closest('.tbl-wrap, nav, footer, .twd, #ratenote, script, style, .edit-toolbar')) return NodeFilter.FILTER_REJECT;
         return NodeFilter.FILTER_ACCEPT;
       }
     });
@@ -844,6 +897,7 @@
         frag.appendChild(document.createTextNode(text.slice(last, m.index + m[0].length)));
         var s = document.createElement('span');
         s.className = 'twd';
+        s.contentEditable = 'false';
         var a = parseInt(m[1].replace(/,/g,''),10);
         if(m[2]){
           var b = parseInt(m[2].replace(/,/g,''),10);
@@ -868,6 +922,171 @@
       else{ annotate(FALLBACK, false); }
     })
     .catch(function(){ annotate(FALLBACK, false); });
+})();
+
+/* 編輯模式：新增／刪除／自動儲存 */
+(function(){
+  var wrap = document.getElementById('wrap');
+  if(!wrap) return;
+  var SAVE_KEY = 'seoul2608.wrap.v1';
+  var LISTS = [
+    {sel:'.tl', item:'li'},
+    {sel:'.mi', item:'li'},
+    {sel:'.cklist', item:'li'},
+    {sel:'.todo', item:'li'},
+    {sel:'.deals', item:'.deal'},
+    {sel:'.opts', item:'.opt'},
+    {sel:'.steps', item:'li'}
+  ];
+
+  function lockComputed(){
+    wrap.querySelectorAll('.twd, [data-krw], .cnt').forEach(function(n){ n.contentEditable = 'false'; });
+    var navEl = wrap.querySelector('nav');
+    if(navEl) navEl.contentEditable = 'false';
+  }
+
+  function refreshCounts(){
+    wrap.querySelectorAll('[data-count]').forEach(function(s){
+      var root = document.getElementById(s.getAttribute('data-count'));
+      if(!root) return;
+      var all = root.querySelectorAll('input[data-k]');
+      var done = 0;
+      all.forEach(function(c){ if(c.checked) done++; });
+      s.textContent = done + ' / ' + all.length;
+    });
+  }
+
+  function wireCheckbox(cb){
+    if(cb.dataset.wired) return;
+    cb.dataset.wired = '1';
+    if(!cb.dataset.k) cb.dataset.k = 'x' + Date.now().toString(36) + Math.random().toString(36).slice(2,7);
+    var key = 'seoul2608.' + cb.dataset.k;
+    try{ cb.checked = localStorage.getItem(key) === '1'; }catch(e){}
+    var lab = cb.closest('label.ck');
+    function sync(){ if(lab && !lab.classList.contains('bare')) lab.classList.toggle('done', cb.checked); }
+    sync();
+    cb.addEventListener('change', function(){
+      try{ localStorage.setItem(key, cb.checked ? '1' : '0'); }catch(e){}
+      sync(); refreshCounts(); scheduleSave();
+    });
+  }
+  wrap.querySelectorAll('input[type=checkbox]').forEach(wireCheckbox);
+
+  var saveTimer = null;
+  function scheduleSave(){
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function(){
+      try{ localStorage.setItem(SAVE_KEY, wrap.innerHTML); }catch(e){}
+      flash('已儲存');
+    }, 700);
+  }
+
+  var flashEl = null, flashTimer = null;
+  function flash(msg){
+    if(!flashEl) return;
+    flashEl.textContent = msg;
+    flashEl.style.opacity = '1';
+    clearTimeout(flashTimer);
+    flashTimer = setTimeout(function(){ flashEl.style.opacity = '0'; }, 1400);
+  }
+
+  function addDelBtn(item){
+    if(item.querySelector(':scope > .del-btn')) return;
+    var b = document.createElement('button');
+    b.className = 'del-btn';
+    b.type = 'button';
+    b.contentEditable = 'false';
+    b.setAttribute('aria-label', '刪除這項');
+    b.textContent = '×';
+    b.addEventListener('click', function(ev){
+      ev.preventDefault(); ev.stopPropagation();
+      item.remove();
+      refreshCounts(); scheduleSave();
+    });
+    item.appendChild(b);
+  }
+
+  function addAddBtn(container, itemSel){
+    var items = container.querySelectorAll(':scope > ' + itemSel);
+    if(items.length) container.dataset.template = items[items.length - 1].outerHTML;
+    if(container.dataset.hasAdd) return;
+    container.dataset.hasAdd = '1';
+    var b = document.createElement('button');
+    b.className = 'add-btn';
+    b.type = 'button';
+    b.contentEditable = 'false';
+    b.textContent = '＋ 新增一項';
+    b.addEventListener('click', function(ev){
+      ev.preventDefault(); ev.stopPropagation();
+      var tmp = document.createElement('div');
+      tmp.innerHTML = container.dataset.template || '';
+      var clone = tmp.firstElementChild;
+      if(!clone) return;
+      var oldDel = clone.querySelector(':scope > .del-btn');
+      if(oldDel) oldDel.remove();
+      clone.querySelectorAll('.twd').forEach(function(n){ n.remove(); });
+      clone.querySelectorAll('input[type=checkbox]').forEach(function(cb){
+        cb.checked = false;
+        cb.removeAttribute('data-wired');
+        cb.dataset.k = 'x' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+      });
+      container.insertBefore(clone, b);
+      addDelBtn(clone);
+      clone.querySelectorAll('input[type=checkbox]').forEach(wireCheckbox);
+      lockComputed();
+      try{
+        var sel = window.getSelection();
+        var range = document.createRange();
+        range.selectNodeContents(clone);
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }catch(e){}
+      refreshCounts(); scheduleSave();
+    });
+    container.appendChild(b);
+  }
+
+  function decorate(){
+    LISTS.forEach(function(L){
+      wrap.querySelectorAll(L.sel).forEach(function(container){
+        container.querySelectorAll(':scope > ' + L.item).forEach(addDelBtn);
+        addAddBtn(container, L.item);
+      });
+    });
+  }
+
+  var editing = false;
+  function setEditing(on){
+    editing = on;
+    wrap.contentEditable = on ? 'true' : 'false';
+    document.body.classList.toggle('editing', on);
+    toggleBtn.textContent = on ? '✓ 完成編輯' : '✎ 編輯內容';
+    if(on){ decorate(); lockComputed(); }
+  }
+
+  var bar = document.createElement('div');
+  bar.className = 'edit-toolbar';
+  bar.innerHTML = '<button type="button" class="edit-toggle">✎ 編輯內容</button>' +
+                   '<button type="button" class="edit-reset">還原初始版本</button>' +
+                   '<span class="edit-flash"></span>';
+  document.body.appendChild(bar);
+  var toggleBtn = bar.querySelector('.edit-toggle');
+  var resetBtn = bar.querySelector('.edit-reset');
+  flashEl = bar.querySelector('.edit-flash');
+
+  toggleBtn.addEventListener('click', function(){ setEditing(!editing); });
+  resetBtn.addEventListener('click', function(){
+    if(!confirm('清除你所有的編輯與勾選記錄，還原成最初版本？此動作無法復原。')) return;
+    try{
+      Object.keys(localStorage).forEach(function(k){
+        if(k.indexOf('seoul2608.') === 0) localStorage.removeItem(k);
+      });
+    }catch(e){}
+    location.reload();
+  });
+
+  wrap.addEventListener('input', function(){ scheduleSave(); });
+  lockComputed();
 })();
 </script>
 
