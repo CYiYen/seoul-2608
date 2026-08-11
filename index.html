@@ -336,6 +336,15 @@
     .sec{grid-template-columns:24px 1fr; gap:10px}
     .deal{grid-template-columns:1fr; gap:2px}
     .day-head .num{font-size:36px}
+    /* 菜單：窄螢幕改成兩行，避免價格＋台幣換算撐破版面 */
+    .mi li{flex-wrap:wrap; gap:2px 8px}
+    .mi .kr{max-width:none; flex:1 1 auto}
+    .mi .dots{display:none}
+    .mi .p{margin-left:auto}
+    .mi .zh{flex:1 1 100%; order:3}
+    table.coupon-tbl{width:calc(100% - 28px); margin-left:14px; margin-right:14px}
+    .coupon-head, .coupon-src{padding-left:14px; padding-right:14px}
+    .coupon-warn{margin-left:14px; margin-right:14px}
   }
 
   /* ---------- edit mode ---------- */
