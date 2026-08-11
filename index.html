@@ -259,6 +259,45 @@
   label.ck.done .tx{text-decoration:line-through}
   label.ck .small{display:block; font-size:12.5px; color:var(--mid)}
 
+  /* ---------- coupon ---------- */
+  h3.sub{
+    font-size:14px; font-weight:600; letter-spacing:.1em;
+    margin:28px 0 8px; padding-bottom:6px; border-bottom:1px solid var(--line);
+  }
+  h3.sub:first-of-type{margin-top:18px}
+  .coupon{
+    border:1.5px solid var(--line-dark); padding:0 0 18px; margin-top:6px;
+    background:var(--surface);
+  }
+  .coupon-head{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:14px; flex-wrap:wrap; padding:16px 18px 12px;
+    border-bottom:1px dashed var(--line-dark);
+  }
+  .coupon-brand{font-size:17px; font-weight:600; letter-spacing:.06em}
+  .coupon-value{
+    font-family:var(--serif); font-size:34px; font-weight:700; line-height:1;
+    font-variant-numeric:tabular-nums;
+  }
+  .coupon-value .pct{font-size:14px; letter-spacing:.1em; margin-left:2px}
+  .coupon-src{
+    font-size:12px; color:var(--mid); letter-spacing:.04em;
+    margin:0; padding:10px 18px 0;
+  }
+  table.coupon-tbl{width:calc(100% - 36px); margin:8px 18px 0; font-size:14px}
+  table.coupon-tbl th{
+    text-align:left; white-space:nowrap; width:64px; vertical-align:top;
+    font-family:var(--sans); font-size:12.5px; letter-spacing:.06em;
+    text-transform:none; border-bottom:1px solid var(--line); padding:8px 12px 8px 0;
+  }
+  table.coupon-tbl td{border-bottom:1px solid var(--line); padding:8px 0}
+  .ok{color:var(--mid); font-size:12.5px}
+  .coupon-warn{
+    margin:14px 18px 0; padding:12px 14px; background:var(--fill); font-size:13.5px;
+  }
+  .coupon-warn ol{margin:6px 0 0; padding-left:20px}
+  .coupon-warn li{padding:3px 0}
+
   /* ---------- deals ---------- */
   .deals{margin-top:4px}
   .deal{
@@ -370,6 +409,8 @@
   <a href="#cost">交通費</a>
   <a href="#pack">行李</a>
   <a href="#deals">優惠</a>
+  <a href="#coupons">優惠券</a>
+  <a href="#shopping">購物退稅</a>
   <a href="#todo">待辦</a>
 </nav>
 
@@ -799,6 +840,93 @@
   </div>
 </section>
 
+<!-- ================= coupons ================= -->
+<section id="coupons">
+  <div class="sec">
+    <span class="vlabel" aria-hidden="true">優惠券</span>
+    <div class="sec-body">
+      <div class="sec-head"><h2>手上的優惠券</h2><span class="en">Coupons</span></div>
+
+      <div class="coupon">
+        <div class="coupon-head">
+          <span class="coupon-brand">Olive Young</span>
+          <span class="coupon-value">10<span class="pct">% OFF</span></span>
+        </div>
+        <p class="coupon-src">Creatrip × Olive Young・2026 Korea Beauty Festival 限定</p>
+        <table class="coupon-tbl">
+          <tr><th>折扣</th><td>單筆滿 <b>₩100,000</b> 折 10%</td></tr>
+          <tr><th>上限</th><td>最多折 <b>₩20,000</b>（消費 ₩200,000 時折好折滿）</td></tr>
+          <tr><th>效期</th><td>2026/6/25 – 9/30 ✓ <span class="ok">涵蓋你們 8/12–16</span></td></tr>
+          <tr><th>資格</th><td>限外國旅客（韓國國民不可用）</td></tr>
+          <tr><th>適用</th><td>全韓國 Olive Young <b>實體門市</b>；網路商城不可用</td></tr>
+        </table>
+        <div class="coupon-warn">
+          <b>使用時三個雷，別踩：</b>
+          <ol>
+            <li>兩個條碼要<b>按順序刷</b>——先刷 A（一般條碼）再刷 B（活動條碼），順序錯了折扣不會生效。</li>
+            <li><b>不能用自助結帳機</b>（SCO），一定要走有店員的櫃檯。</li>
+            <li><b>截圖無效</b>——必須現場打開 Creatrip 原始券畫面給店員掃，所以手機要有網路、電要夠。</li>
+          </ol>
+        </div>
+        <p class="fine" style="margin:10px 0 0">⚠️ 這張券和 Check in Seoul 樂天卡的 Olive Young 折扣<b>大概率不能疊加</b>，結帳前先問店員哪個划算：滿 ₩100,000 用這張折 10%（上限 ₩20,000）；金額低於 ₩100,000 就改刷樂天卡。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= shopping ================= -->
+<section id="shopping">
+  <div class="sec">
+    <span class="vlabel" aria-hidden="true">購物退稅</span>
+    <div class="sec-body">
+      <div class="sec-head"><h2>購物、退稅、刷哪張卡</h2><span class="en">Shopping &amp; Tax Refund</span></div>
+
+      <h3 class="sub">一、退稅：買越多越要搞懂</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>項目</th><th>規則</th></tr></thead>
+          <tbody>
+            <tr><td>門檻</td><td>同一店家單筆滿 <b>₩15,000</b>（含稅）就能退</td></tr>
+            <tr><td>退多少</td><td>約消費金額的 <b>7–10%</b>（依商品類別）</td></tr>
+            <tr><td>即時退稅上限</td><td>單筆 ₩1,000,000 以下、<b>全程累計 ₩5,000,000</b> 以內</td></tr>
+            <tr><td>結帳時</td><td>出示<b>護照</b>說「tax refund」，多數店家（含 Olive Young、百貨）可當場折抵，不用等機場</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sub">二、8/16 機場退稅動線（沒當場折抵的才要走）</h3>
+      <ol class="steps">
+        <li><b>退稅單金額未達 ₩75,000</b>——直接用自助退稅機，掃護照領現金，不用排海關。</li>
+        <li><b>超過 ₩75,000</b>——先到<b>海關申報櫃檯</b>，商品要能拿出來查驗、蓋章（所以<b>別把要退稅的東西托運掉</b>）。</li>
+        <li>出境檢查後，持蓋章退稅單＋護照到退稅櫃檯或自助機領錢。</li>
+        <li>你們 19:00 到機場、23:00 起飛，時間夠；但若買很多，抓 30 分鐘排隊比較保險。</li>
+      </ol>
+
+      <h3 class="sub">三、刷卡：省的是手續費，不是折扣</h3>
+      <div class="deals">
+        <div class="deal"><span class="who">關鍵成本</span><div>台灣卡在韓國刷會收 <b>約 1.5% 海外交易手續費</b>——這比多數店家折扣還痛。出發前查一下你手上的卡：<b>有沒有免海外手續費、或海外回饋 ≥3%</b> 的那張，整趟就固定刷它。</div></div>
+        <div class="deal"><span class="who">通用性</span><div>VISA／Mastercard／JCB 在韓國都通；<b>百貨、Olive Young、連鎖店幾乎都能刷</b>，廣藏市場、路邊小攤則備點現金比較保險。</div></div>
+        <div class="deal"><span class="who">Check in Seoul</span><div>你們已辦的樂天卡是<b>儲值卡</b>，儲值時就換好匯率、之後刷不再被收海外手續費——小額消費、交通、便利商店用它最划算。</div></div>
+        <div class="deal"><span class="who">大額消費</span><div>百貨、電子產品這類大額，比較「刷台灣信用卡（賺回饋但付 1.5% 手續費）」vs「刷樂天卡（無手續費但無回饋）」，通常回饋 &gt;1.5% 才值得刷信用卡。</div></div>
+      </div>
+
+      <h3 class="sub">四、你們行程會逛到的購物點</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>地點</th><th>時間</th><th>能用的優惠</th></tr></thead>
+          <tbody>
+            <tr><td><b>樂天世界 Mall</b>／樂天超市</td><td>8/14 下午</td><td>樂天卡：超市 85 折、百貨 5% 返現；滿 ₩15,000 記得退稅</td></tr>
+            <tr><td><b>Olive Young</b>（聖水、弘大都有）</td><td>8/13、8/16</td><td>10% 券（滿 ₩100,000）或樂天卡折扣，擇優；可當場退稅</td></tr>
+            <tr><td><b>BUTTER 弘大店</b></td><td>8/16 下午</td><td>生活雜貨平價，單筆通常不到退稅門檻，湊滿 ₩15,000 再一起結</td></tr>
+            <tr><td><b>Tamburins 聖水</b></td><td>8/13（試香）</td><td>實際購買建議留到<b>仁川機場免稅店</b>（免稅價通常最低）</td></tr>
+            <tr><td><b>仁川機場免稅店</b></td><td>8/16 晚</td><td>樂天已撤櫃，現由<b>新羅、新世界、現代</b>經營；新世界有 Tamburins</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= todo ================= -->
 <section id="todo">
   <div class="sec">
@@ -1101,6 +1229,7 @@
   lockComputed();
 })();
 </script>
+
 
 </body>
 </html>
